@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "六层架构与一次生命循环",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [900, 500]
+  },
+  "components": [
+    {
+      "id": "kernel",
+      "type": "backend",
+      "label": "L2 发育引擎 · 横切所有层",
+      "sublabel": "调度 · 阶段判定 · 特质漂移 · 安全门",
+      "pos": [40, 50],
+      "size": [820, 64]
+    },
+    {
+      "id": "world",
+      "type": "cloud",
+      "label": "L3 世界层",
+      "sublabel": "场景 · 物件 · 时钟 · NPC",
+      "pos": [40, 170],
+      "size": [220, 76]
+    },
+    {
+      "id": "body",
+      "type": "backend",
+      "label": "L1 身体层",
+      "sublabel": "感知 · 动作原语 · 语言编译器",
+      "pos": [340, 170],
+      "size": [220, 76]
+    },
+    {
+      "id": "llm",
+      "type": "external",
+      "label": "L0 基质",
+      "sublabel": "LLM API（可替换）",
+      "pos": [640, 170],
+      "size": [220, 76]
+    },
+    {
+      "id": "consolidate",
+      "type": "backend",
+      "label": "夜间巩固",
+      "sublabel": "六步流水线",
+      "pos": [40, 360],
+      "size": [220, 76]
+    },
+    {
+      "id": "memory",
+      "type": "database",
+      "label": "L4 记忆层",
+      "sublabel": "情景 · 语义 · 关系 · 自传",
+      "pos": [340, 360],
+      "size": [220, 76]
+    },
+    {
+      "id": "observe",
+      "type": "frontend",
+      "label": "L5 观察台",
+      "sublabel": "日记 · 曲线 · 回放",
+      "pos": [640, 360],
+      "size": [220, 76]
+    }
+  ],
+  "connections": [
+    {
+      "id": "perceive",
+      "from": "world",
+      "to": "body",
+      "label": "观测快照",
+      "labelAt": [300, 192]
+    },
+    {
+      "id": "act",
+      "from": "body",
+      "to": "world",
+      "label": "动作结果",
+      "variant": "dashed",
+      "labelAt": [300, 262]
+    },
+    {
+      "id": "decide",
+      "from": "body",
+      "to": "llm",
+      "label": "决策请求",
+      "variant": "emphasis",
+      "labelAt": [600, 192]
+    },
+    {
+      "id": "answer",
+      "from": "llm",
+      "to": "body",
+      "label": "结构化动作",
+      "variant": "dashed",
+      "labelAt": [600, 262]
+    },
+    {
+      "id": "write",
+      "from": "body",
+      "to": "memory",
+      "label": "写 episode",
+      "labelAt": [510, 303]
+    },
+    {
+      "id": "replay",
+      "from": "consolidate",
+      "to": "memory",
+      "label": "巩固回写",
+      "labelAt": [300, 376]
+    },
+    {
+      "id": "project",
+      "from": "memory",
+      "to": "observe",
+      "label": "只读投影",
+      "labelAt": [600, 376]
+    },
+    {
+      "id": "gate",
+      "from": "kernel",
+      "to": "body",
+      "label": "阶段门控",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [494, 140]
+    }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "一次生命循环", "items": ["世界给出此刻能感知的切片，身体按阶段裁剪", "基质只做判断，动作与语言由身体编译", "episode 写进记忆，代价与结果一并留痕"] },
+    { "dot": "emerald", "title": "成长发生在夜里", "items": ["夜间巩固只采样当日高显著 episode", "特质每周按行为投影漂移一次（η 随阶段下降）", "自传仅在触发条件满足时改写，且不可删章"] },
+    { "dot": "amber", "title": "可审计，也可一键停", "items": ["SQLite + 追加式事件日志，任意时刻可重放", "安全门在出口：说出口、做出来之前拦截", "观察台只读投影，不碰内存状态"] }
+  ]
+}
