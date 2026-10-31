@@ -1,0 +1,18 @@
+{
+  "individual": {
+    "id": "soul-s2",
+    "name": "小二",
+    "birth": "2026-01-01T06:00:00+08:00"
+  },
+  "clock": {
+    "mode": "mock",
+    "start": "2026-01-01T06:00:00+08:00"
+  },
+  "store": {
+    "path": "data/soul-s2/soul.db",
+    "events": "data/soul-s2/events.jsonl"
+  },
+  "runtime": {
+    "diary": true
+  }
+}

@@ -1,0 +1,11 @@
+# 运行产物：数据、日志、缓存都不进版本库
+data/
+!data/.gitkeep
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ruff_cache/
+.mypy_cache/
+
+*.log

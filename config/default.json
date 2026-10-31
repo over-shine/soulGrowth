@@ -1,0 +1,23 @@
+{
+  "individual": {
+    "id": "soul-001",
+    "name": "小满",
+    "birth": "2026-01-01T06:00:00+08:00"
+  },
+  "clock": {
+    "mode": "mock",
+    "start": "2026-01-01T06:00:00+08:00"
+  },
+  "stage": {
+    "start": "S0"
+  },
+  "store": {
+    "path": "data/soul-001/soul.db",
+    "events": "data/soul-001/events.jsonl"
+  },
+  "llm": {
+    "provider": "mock",
+    "model": "mock-1",
+    "cassette_mode": "record"
+  }
+}

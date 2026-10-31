@@ -1,0 +1,41 @@
+[project]
+name = "soulgrowth"
+version = "0.1.0"
+description = "SoulGrowth：一个人的成长内核（身体—评价—决策—记忆—语言—阶段）"
+readme = "README.md"
+requires-python = ">=3.10"
+# 零运行时依赖：全部使用标准库。db=mock 时连 sqlite3 的 FTS5 都不需要（有降级）。
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["ruff", "mypy"]
+
+[project.scripts]
+persona = "persona.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+persona = ["body/*.json", "store/*.sql"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_ignores = true
+ignore_missing_imports = true
+files = ["src/persona"]

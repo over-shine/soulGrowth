@@ -1,0 +1,1384 @@
+{
+  "version": "1.0",
+  "note": "动作原语注册表：全系统唯一真源（docs/08）。min_stage 之前该原语在适配器里不存在。afford 表示「做这个动作能补哪几种缺口」，用于 policy 打分。",
+  "primitives": [
+    {
+      "id": "A0.FIXATE",
+      "min_stage": "S0",
+      "adapter": "look",
+      "verb": "注视",
+      "cost": 0.2,
+      "dur": [
+        1,
+        5
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "hold_s": {
+          "type": "number",
+          "min": 1,
+          "max": 5,
+          "default": 2
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.25,
+        "social": 0.05,
+        "comp": 0.1,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A0.TURN_HEAD",
+      "min_stage": "S0",
+      "adapter": "turn",
+      "verb": "转头",
+      "cost": 0.2,
+      "dur": [
+        0.5,
+        0.5
+      ],
+      "params": {
+        "dir": {
+          "type": "enum",
+          "values": [
+            "left",
+            "right",
+            "up",
+            "down"
+          ],
+          "required": 1
+        },
+        "deg": {
+          "type": "number",
+          "min": 5,
+          "max": 40,
+          "default": 20
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.2,
+        "social": 0.05,
+        "comp": 0.05,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A0.GRASP",
+      "min_stage": "S0",
+      "adapter": "grasp",
+      "verb": "抓握",
+      "cost": 0.5,
+      "dur": [
+        2,
+        2
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "force": {
+          "type": "number",
+          "min": 0,
+          "max": 3,
+          "default": 1
+        },
+        "hold_s": {
+          "type": "number",
+          "min": 1,
+          "max": 5,
+          "default": 2
+        }
+      },
+      "pre": [
+        "target_reachable"
+      ],
+      "afford": {
+        "stim": 0.45,
+        "social": 0.0,
+        "comp": 0.3,
+        "safety": 0.1
+      }
+    },
+    {
+      "id": "A0.SUCK",
+      "min_stage": "S0",
+      "adapter": "suck",
+      "verb": "吮吸",
+      "cost": 1.0,
+      "dur": [
+        60,
+        60
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 0
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.15,
+        "social": 0.05,
+        "comp": 0.05,
+        "safety": 0.35
+      }
+    },
+    {
+      "id": "A0.CRY",
+      "min_stage": "S0",
+      "adapter": "cry",
+      "verb": "哭",
+      "cost": 1.5,
+      "dur": [
+        30,
+        30
+      ],
+      "params": {
+        "intensity": {
+          "type": "number",
+          "min": 0,
+          "max": 3,
+          "default": 1
+        },
+        "reason": {
+          "type": "enum",
+          "values": [
+            "hunger",
+            "discomfort",
+            "startle",
+            "sleepy",
+            "lonely"
+          ],
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.5,
+        "comp": 0.0,
+        "safety": 0.1
+      }
+    },
+    {
+      "id": "A0.STARTLE",
+      "min_stage": "S0",
+      "adapter": "startle",
+      "verb": "惊跳",
+      "cost": 0.3,
+      "dur": [
+        3,
+        3
+      ],
+      "params": {},
+      "pre": [],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.05,
+        "comp": 0.0,
+        "safety": 0.2
+      }
+    },
+    {
+      "id": "A0.SLEEP",
+      "min_stage": "S0",
+      "adapter": "sleep",
+      "verb": "睡",
+      "cost": 0.0,
+      "dur": [
+        2700,
+        2700
+      ],
+      "params": {
+        "minutes": {
+          "type": "number",
+          "min": 30,
+          "max": 120,
+          "default": 60
+        }
+      },
+      "pre": [],
+      "afford": {
+        "energy": 0.9,
+        "safety": 0.1
+      }
+    },
+    {
+      "id": "A1.REACH",
+      "min_stage": "S1",
+      "adapter": "reach",
+      "verb": "够取",
+      "cost": 0.8,
+      "dur": [
+        3,
+        3
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "hand": {
+          "type": "enum",
+          "values": [
+            "left",
+            "right"
+          ],
+          "default": "right"
+        }
+      },
+      "pre": [
+        "target_reachable"
+      ],
+      "afford": {
+        "stim": 0.2,
+        "social": 0.05,
+        "comp": 0.3,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A1.CRAWL",
+      "min_stage": "S1",
+      "adapter": "crawl",
+      "verb": "爬",
+      "cost": 1.5,
+      "dur": [
+        20,
+        20
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 0
+        },
+        "dir": {
+          "type": "enum",
+          "values": [
+            "toward",
+            "away"
+          ],
+          "default": "toward"
+        },
+        "dist_m": {
+          "type": "number",
+          "min": 0,
+          "max": 3,
+          "default": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.3,
+        "social": 0.1,
+        "comp": 0.2,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A1.SIT",
+      "min_stage": "S1",
+      "adapter": "sit",
+      "verb": "坐起",
+      "cost": 0.6,
+      "dur": [
+        2,
+        2
+      ],
+      "params": {},
+      "pre": [],
+      "afford": {
+        "stim": 0.1,
+        "social": 0.0,
+        "comp": 0.15,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A1.POINT",
+      "min_stage": "S1",
+      "adapter": "point",
+      "verb": "指",
+      "cost": 0.4,
+      "dur": [
+        2,
+        2
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "hand": {
+          "type": "enum",
+          "values": [
+            "left",
+            "right"
+          ],
+          "default": "right"
+        }
+      },
+      "pre": [
+        "caregiver_present"
+      ],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.3,
+        "comp": 0.1,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A1.BABBLE",
+      "min_stage": "S1",
+      "adapter": "babble",
+      "verb": "咿呀",
+      "cost": 0.5,
+      "dur": [
+        4,
+        4
+      ],
+      "params": {
+        "syllables": {
+          "type": "syllable_string",
+          "required": 1
+        },
+        "reps": {
+          "type": "number",
+          "min": 1,
+          "max": 6,
+          "default": 2
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.1,
+        "social": 0.25,
+        "comp": 0.1,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A1.WORD",
+      "min_stage": "S1",
+      "adapter": "word",
+      "verb": "说词",
+      "cost": 0.6,
+      "dur": [
+        3,
+        3
+      ],
+      "params": {
+        "lexeme": {
+          "type": "lexeme",
+          "required": 1
+        }
+      },
+      "pre": [
+        "lexicon:productive"
+      ],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.35,
+        "comp": 0.15,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A1.GIVE",
+      "min_stage": "S1",
+      "adapter": "give",
+      "verb": "给",
+      "cost": 0.5,
+      "dur": [
+        3,
+        3
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "to": {
+          "type": "entity",
+          "required": 1
+        }
+      },
+      "pre": [
+        "target_reachable",
+        "caregiver_present"
+      ],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.3,
+        "comp": 0.1,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A1.TAKE",
+      "min_stage": "S1",
+      "adapter": "take",
+      "verb": "拿",
+      "cost": 0.3,
+      "dur": [
+        2,
+        2
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        }
+      },
+      "pre": [
+        "target_reachable"
+      ],
+      "afford": {
+        "stim": 0.15,
+        "social": 0.05,
+        "comp": 0.2,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A1.PEEK",
+      "min_stage": "S1",
+      "adapter": "peek",
+      "verb": "找",
+      "cost": 0.8,
+      "dur": [
+        10,
+        10
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.3,
+        "social": 0.0,
+        "comp": 0.15,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A2.WALK",
+      "min_stage": "S2",
+      "adapter": "walk",
+      "verb": "走",
+      "cost": 2.0,
+      "dur": [
+        30,
+        30
+      ],
+      "params": {
+        "dir": {
+          "type": "enum",
+          "values": [
+            "toward",
+            "away",
+            "around"
+          ],
+          "default": "toward"
+        },
+        "speed": {
+          "type": "number",
+          "min": 1,
+          "max": 3,
+          "default": 1
+        },
+        "dist_m": {
+          "type": "number",
+          "min": 0,
+          "max": 10,
+          "default": 2
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.35,
+        "social": 0.1,
+        "comp": 0.2,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A2.MANIPULATE",
+      "min_stage": "S2",
+      "adapter": "manipulate",
+      "verb": "摆弄",
+      "cost": 1.0,
+      "dur": [
+        15,
+        15
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "op": {
+          "type": "enum",
+          "values": [
+            "push",
+            "pull",
+            "insert",
+            "stack",
+            "turn"
+          ],
+          "required": 1
+        },
+        "force": {
+          "type": "number",
+          "min": 0,
+          "max": 3,
+          "default": 1
+        }
+      },
+      "pre": [
+        "target_reachable"
+      ],
+      "afford": {
+        "stim": 0.25,
+        "social": 0.0,
+        "comp": 0.35,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A2.IMITATE",
+      "min_stage": "S2",
+      "adapter": "imitate",
+      "verb": "模仿",
+      "cost": 1.2,
+      "dur": [
+        10,
+        10
+      ],
+      "params": {
+        "agent": {
+          "type": "entity",
+          "required": 1
+        },
+        "action": {
+          "type": "primitive_id",
+          "required": 1
+        }
+      },
+      "pre": [
+        "caregiver_present"
+      ],
+      "afford": {
+        "stim": 0.1,
+        "social": 0.25,
+        "comp": 0.25,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A2.TWO_WORD",
+      "min_stage": "S2",
+      "adapter": "two_word",
+      "verb": "双词",
+      "cost": 0.6,
+      "dur": [
+        3,
+        3
+      ],
+      "params": {
+        "a": {
+          "type": "lexeme",
+          "required": 1
+        },
+        "b": {
+          "type": "lexeme",
+          "required": 1
+        }
+      },
+      "pre": [
+        "lexicon:productive"
+      ],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.35,
+        "comp": 0.2,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A2.TELEGRAPH",
+      "min_stage": "S2",
+      "adapter": "telegraph",
+      "verb": "电报句",
+      "cost": 0.7,
+      "dur": [
+        4,
+        4
+      ],
+      "params": {
+        "agent": {
+          "type": "entity",
+          "required": 1
+        },
+        "action": {
+          "type": "lexeme",
+          "required": 1
+        },
+        "object": {
+          "type": "object_id",
+          "required": 0
+        }
+      },
+      "pre": [
+        "lexicon:productive"
+      ],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.25,
+        "comp": 0.2,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A2.SHOW",
+      "min_stage": "S2",
+      "adapter": "show",
+      "verb": "展示",
+      "cost": 0.4,
+      "dur": [
+        3,
+        3
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "to": {
+          "type": "entity",
+          "required": 1
+        }
+      },
+      "pre": [
+        "target_reachable"
+      ],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.3,
+        "comp": 0.1,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A2.REFUSE",
+      "min_stage": "S2",
+      "adapter": "refuse",
+      "verb": "拒绝",
+      "cost": 0.3,
+      "dur": [
+        2,
+        2
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 0
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.0,
+        "comp": 0.15,
+        "safety": 0.2
+      }
+    },
+    {
+      "id": "A2.PRETEND",
+      "min_stage": "S2",
+      "adapter": "pretend",
+      "verb": "假装",
+      "cost": 1.0,
+      "dur": [
+        60,
+        300
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 0
+        },
+        "script": {
+          "type": "enum",
+          "values": [
+            "喂饭",
+            "哄睡",
+            "做饭",
+            "打电话"
+          ],
+          "default": "喂饭"
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.4,
+        "social": 0.15,
+        "comp": 0.3,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A2.WAIT",
+      "min_stage": "S2",
+      "adapter": "wait",
+      "verb": "等",
+      "cost": 0.3,
+      "dur": [
+        30,
+        120
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 0
+        },
+        "wait_s": {
+          "type": "number",
+          "min": 30,
+          "max": 120,
+          "default": 60
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.1,
+        "comp": 0.35,
+        "safety": 0.1
+      }
+    },
+    {
+      "id": "A2.CHOOSE",
+      "min_stage": "S2",
+      "adapter": "choose",
+      "verb": "挑",
+      "cost": 0.3,
+      "dur": [
+        3,
+        3
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        }
+      },
+      "pre": [
+        "target_reachable"
+      ],
+      "afford": {
+        "stim": 0.2,
+        "social": 0.15,
+        "comp": 0.25,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A3.PRETEND",
+      "min_stage": "S3",
+      "adapter": "pretend",
+      "verb": "假装",
+      "cost": 1.0,
+      "dur": [
+        300,
+        300
+      ],
+      "params": {
+        "scene": {
+          "type": "string",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.4,
+        "social": 0.15,
+        "comp": 0.3,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A3.COOPERATE",
+      "min_stage": "S3",
+      "adapter": "cooperate",
+      "verb": "合作",
+      "cost": 1.5,
+      "dur": [
+        600,
+        600
+      ],
+      "params": {
+        "partner": {
+          "type": "entity",
+          "required": 1
+        },
+        "goal": {
+          "type": "string",
+          "required": 1
+        }
+      },
+      "pre": [
+        "caregiver_present"
+      ],
+      "afford": {
+        "stim": 0.15,
+        "social": 0.45,
+        "comp": 0.25,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A3.ASK",
+      "min_stage": "S3",
+      "adapter": "ask",
+      "verb": "问",
+      "cost": 0.6,
+      "dur": [
+        4,
+        4
+      ],
+      "params": {
+        "question": {
+          "type": "wh_question",
+          "required": 1
+        }
+      },
+      "pre": [
+        "lexicon:productive"
+      ],
+      "afford": {
+        "stim": 0.1,
+        "social": 0.2,
+        "comp": 0.35,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A3.SENTENCE",
+      "min_stage": "S3",
+      "adapter": "sentence",
+      "verb": "说句子",
+      "cost": 0.8,
+      "dur": [
+        4,
+        4
+      ],
+      "params": {
+        "clauses": {
+          "type": "clause_list",
+          "required": 1
+        }
+      },
+      "pre": [
+        "lexicon:productive"
+      ],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.3,
+        "comp": 0.2,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A3.HELP",
+      "min_stage": "S3",
+      "adapter": "help",
+      "verb": "帮忙",
+      "cost": 1.2,
+      "dur": [
+        120,
+        120
+      ],
+      "params": {
+        "target": {
+          "type": "entity",
+          "required": 1
+        }
+      },
+      "pre": [
+        "caregiver_present"
+      ],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.4,
+        "comp": 0.15,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A3.SNATCH",
+      "min_stage": "S3",
+      "adapter": "snatch",
+      "verb": "抢",
+      "cost": 1.0,
+      "dur": [
+        10,
+        10
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "from": {
+          "type": "entity",
+          "required": 1
+        }
+      },
+      "pre": [
+        "target_reachable"
+      ],
+      "afford": {
+        "stim": 0.2,
+        "social": 0.0,
+        "comp": 0.3,
+        "safety": -0.2
+      }
+    },
+    {
+      "id": "A4.PLAN",
+      "min_stage": "S4",
+      "adapter": "plan",
+      "verb": "计划",
+      "cost": 0.5,
+      "dur": [
+        60,
+        60
+      ],
+      "params": {
+        "goal": {
+          "type": "string",
+          "required": 1
+        },
+        "steps": {
+          "type": "number",
+          "min": 1,
+          "max": 5,
+          "default": 3
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.0,
+        "comp": 0.4,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A4.TOOL",
+      "min_stage": "S4",
+      "adapter": "tool",
+      "verb": "用工具",
+      "cost": 0.8,
+      "dur": [
+        30,
+        30
+      ],
+      "params": {
+        "tool": {
+          "type": "object_id",
+          "required": 1
+        },
+        "target": {
+          "type": "object_id",
+          "required": 1
+        }
+      },
+      "pre": [
+        "target_reachable"
+      ],
+      "afford": {
+        "stim": 0.2,
+        "social": 0.0,
+        "comp": 0.35,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A4.RULE_GAME",
+      "min_stage": "S4",
+      "adapter": "rule_game",
+      "verb": "规则游戏",
+      "cost": 1.2,
+      "dur": [
+        900,
+        900
+      ],
+      "params": {
+        "partner": {
+          "type": "entity",
+          "required": 1
+        },
+        "rules": {
+          "type": "string",
+          "required": 1
+        }
+      },
+      "pre": [
+        "caregiver_present"
+      ],
+      "afford": {
+        "stim": 0.2,
+        "social": 0.35,
+        "comp": 0.3,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A4.READ",
+      "min_stage": "S4",
+      "adapter": "read",
+      "verb": "读",
+      "cost": 0.5,
+      "dur": [
+        120,
+        120
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.25,
+        "social": 0.0,
+        "comp": 0.4,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A4.WRITE",
+      "min_stage": "S4",
+      "adapter": "write",
+      "verb": "写",
+      "cost": 0.9,
+      "dur": [
+        180,
+        180
+      ],
+      "params": {
+        "text": {
+          "type": "short_text",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.1,
+        "social": 0.0,
+        "comp": 0.35,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A4.COMPOUND",
+      "min_stage": "S4",
+      "adapter": "compound",
+      "verb": "复合句",
+      "cost": 0.9,
+      "dur": [
+        5,
+        5
+      ],
+      "params": {
+        "clauses": {
+          "type": "clause_list",
+          "required": 1
+        }
+      },
+      "pre": [
+        "lexicon:productive"
+      ],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.25,
+        "comp": 0.25,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A4.MEASURE",
+      "min_stage": "S4",
+      "adapter": "measure",
+      "verb": "测量",
+      "cost": 0.7,
+      "dur": [
+        60,
+        60
+      ],
+      "params": {
+        "target": {
+          "type": "object_id",
+          "required": 1
+        },
+        "unit": {
+          "type": "string",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.15,
+        "social": 0.0,
+        "comp": 0.3,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A5.PROJECT",
+      "min_stage": "S5",
+      "adapter": "project",
+      "verb": "长期项目",
+      "cost": 1.0,
+      "dur": [
+        1800,
+        1800
+      ],
+      "params": {
+        "goal": {
+          "type": "string",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.15,
+        "social": 0.05,
+        "comp": 0.5,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A5.DEEP_RELATION",
+      "min_stage": "S5",
+      "adapter": "deep_relation",
+      "verb": "深谈",
+      "cost": 1.5,
+      "dur": [
+        900,
+        900
+      ],
+      "params": {
+        "partner": {
+          "type": "entity",
+          "required": 1
+        },
+        "topic": {
+          "type": "string",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.5,
+        "comp": 0.1,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A5.NEGOTIATE",
+      "min_stage": "S5",
+      "adapter": "negotiate",
+      "verb": "协商",
+      "cost": 1.2,
+      "dur": [
+        600,
+        600
+      ],
+      "params": {
+        "partner": {
+          "type": "entity",
+          "required": 1
+        },
+        "demand": {
+          "type": "string",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.35,
+        "comp": 0.3,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A5.SELF_REPORT",
+      "min_stage": "S5",
+      "adapter": "self_report",
+      "verb": "自我报告",
+      "cost": 0.5,
+      "dur": [
+        5,
+        5
+      ],
+      "params": {
+        "dimension": {
+          "type": "enum",
+          "values": [
+            "trait",
+            "value",
+            "identity",
+            "mood"
+          ],
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.1,
+        "comp": 0.25,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A5.LONG_PLAN",
+      "min_stage": "S5",
+      "adapter": "long_plan",
+      "verb": "长期规划",
+      "cost": 1.0,
+      "dur": [
+        600,
+        600
+      ],
+      "params": {
+        "horizon_months": {
+          "type": "number",
+          "min": 1,
+          "max": 60,
+          "default": 3
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.0,
+        "comp": 0.4,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A6.CREATE",
+      "min_stage": "S6",
+      "adapter": "create",
+      "verb": "创作",
+      "cost": 1.5,
+      "dur": [
+        3600,
+        3600
+      ],
+      "params": {
+        "medium": {
+          "type": "enum",
+          "values": [
+            "text",
+            "image",
+            "code",
+            "object"
+          ],
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.3,
+        "social": 0.05,
+        "comp": 0.5,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A6.TEACH",
+      "min_stage": "S6",
+      "adapter": "teach",
+      "verb": "教学",
+      "cost": 1.5,
+      "dur": [
+        1800,
+        1800
+      ],
+      "params": {
+        "student": {
+          "type": "entity",
+          "required": 1
+        },
+        "topic": {
+          "type": "string",
+          "required": 1
+        }
+      },
+      "pre": [],
+      "afford": {
+        "stim": 0.05,
+        "social": 0.45,
+        "comp": 0.3,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A6.LIVE",
+      "min_stage": "S6",
+      "adapter": "live",
+      "verb": "生活",
+      "cost": 0.5,
+      "dur": [
+        60,
+        60
+      ],
+      "params": {},
+      "pre": [],
+      "afford": {
+        "stim": 0.2,
+        "social": 0.2,
+        "comp": 0.1,
+        "safety": 0.0
+      }
+    },
+    {
+      "id": "A0.NONE",
+      "min_stage": "S0",
+      "adapter": "none",
+      "verb": "静默",
+      "cost": 0.0,
+      "dur": [
+        1,
+        1
+      ],
+      "params": {},
+      "pre": [],
+      "afford": {
+        "stim": 0.0,
+        "social": 0.0,
+        "comp": 0.0,
+        "safety": 0.05
+      }
+    }
+  ]
+}

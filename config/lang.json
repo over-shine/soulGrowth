@@ -1,0 +1,18 @@
+{
+  "individual": {
+    "id": "soul-lang",
+    "name": "小语",
+    "birth": "2026-01-01T06:00:00+08:00"
+  },
+  "clock": {
+    "mode": "mock",
+    "start": "2026-01-01T06:00:00+08:00"
+  },
+  "store": {
+    "path": "data/soul-lang/soul.db",
+    "events": "data/soul-lang/events.jsonl"
+  },
+  "runtime": {
+    "diary": true
+  }
+}

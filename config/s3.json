@@ -1,0 +1,18 @@
+{
+  "individual": {
+    "id": "soul-s3",
+    "name": "小三",
+    "birth": "2026-01-01T06:00:00+08:00"
+  },
+  "clock": {
+    "mode": "mock",
+    "start": "2026-01-01T06:00:00+08:00"
+  },
+  "store": {
+    "path": "data/soul-s3/soul.db",
+    "events": "data/soul-s3/events.jsonl"
+  },
+  "runtime": {
+    "diary": true
+  }
+}

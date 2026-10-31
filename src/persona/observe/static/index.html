@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成长观察台</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="who">
+    <span class="name" id="name">…</span>
+    <span class="sub" id="sub"></span>
+  </div>
+  <span class="badge stage" id="stage">—</span>
+  <span class="badge" id="age">—</span>
+  <span class="badge live" id="live"><span class="dot"></span><span id="live-text">连接中</span></span>
+  <span class="spacer"></span>
+  <span class="clock" id="clock"></span>
+</header>
+
+<div class="grid">
+  <div>
+    <section class="card">
+      <h2>今日 <span class="count" id="today-date"></span></h2>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section class="card">
+      <h2>今天发生的事 <span class="count" id="tl-count"></span></h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="card" id="detail-card" hidden>
+      <h2>这一条是怎么来的 <span class="count" id="detail-id"></span></h2>
+      <div id="detail"></div>
+    </section>
+
+    <section class="card">
+      <h2>成长趋势 <span class="count">每根柱子 = 一天：深色 episode 数，红色哭声</span></h2>
+      <div class="spark" id="spark"></div>
+      <div class="axis" id="axis"></div>
+    </section>
+  </div>
+
+  <div>
+    <section class="card">
+      <h2>里程碑 <span class="count" id="ms-count"></span></h2>
+      <div id="milestones"></div>
+    </section>
+
+    <section class="card">
+      <h2>此刻的样子 <span class="count" id="trait-week"></span></h2>
+      <div id="traits"></div>
+      <div class="empty" id="trait-note"></div>
+    </section>
+
+    <section class="card">
+      <h2>日记 <span class="count" id="diary-count"></span></h2>
+      <div style="margin-bottom:8px"><select id="diary-select"></select></div>
+      <div class="md" id="diary"></div>
+    </section>
+
+    <section class="card">
+      <h2>事件流 <span class="count">最近 60 条</span></h2>
+      <div class="events" id="events"></div>
+    </section>
+  </div>
+</div>
+
+<div class="foot">只读观察台 · 只回答 GET · 不写数据库 · 不改变他的任何行为</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

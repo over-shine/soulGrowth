@@ -1,0 +1,18 @@
+{
+  "individual": {
+    "id": "soul-live",
+    "name": "小跑",
+    "birth": "2026-01-01T06:00:00+08:00"
+  },
+  "clock": {
+    "mode": "mock",
+    "start": "2026-01-01T06:00:00+08:00"
+  },
+  "store": {
+    "path": "data/soul-live/soul.db",
+    "events": "data/soul-live/events.jsonl"
+  },
+  "runtime": {
+    "diary": true
+  }
+}

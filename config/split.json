@@ -1,0 +1,18 @@
+{
+  "individual": {
+    "id": "soul-split",
+    "name": "小分",
+    "birth": "2026-01-01T06:00:00+08:00"
+  },
+  "clock": {
+    "mode": "mock",
+    "start": "2026-01-01T06:00:00+08:00"
+  },
+  "store": {
+    "path": "data/soul-split/soul.db",
+    "events": "data/soul-split/events.jsonl"
+  },
+  "runtime": {
+    "diary": true
+  }
+}
